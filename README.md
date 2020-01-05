@@ -16,6 +16,7 @@ the strings and convert them to Command type objects, and execute eact one of th
 *OpenDataServerCmd- opens a thread that creats a server(tcp socket).
 	flightgear connects to our server as a client and sends us crucial information about the simulation (such 	  as current altitude of the airplane or the rpm value of the engine)
 	this server helps us to keep in touch with the simulation values.
+
 *ConnectControlClientCmd-opens a thread that creats client and connect to the simulator as a client
 	CCC can read commands and apply them to out airplane the commands use certain format
 	|set objectSimulation value /r/n
@@ -23,6 +24,7 @@ the strings and convert them to Command type objects, and execute eact one of th
 	if we want to change the throttle value to 0.5 we can send
 	set /controls/engines/current-engine/throttle 0.5 /r/n
 	CCC helps us to actively control the simulation through our program
+
 *VarDeclarationCmd-all the veriables that we create can be splitted to 2 maps 
 	updateVarToServer:(->)
 	these type of varibles are variables that we can control such as throttle or rudder
@@ -37,9 +39,11 @@ the strings and convert them to Command type objects, and execute eact one of th
 we do that in order to get away with building another map.
 *UpdateVarCmd-when we update a variable we first update the map, then we create a set command according to the 		known format, after we create the set command we push it to a queue. in the CCC the client will use the
 	queue and send the commands inside the queue to the simulator 
+
 *ConditionVarCmd-if and while conditions can be in the file 
 	the condition itself will usually be checked by the fromServer map 
 	(for exemple if we want to check wheter altitude < 1000 we can do that easily because the current altitude 		is stored in the fromServer map)
+
 *Sleep and Print commands will be supported- our program knows to read it and apply it to itself
 -done- command will finish our run disconnect our servers and finish the program.
 
